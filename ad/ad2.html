@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Damaged | Headwear Shop</title>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#0e0e0e;
+      --text:#f5f5f5;
+      --muted:#bdbdbd;
+      --red:#ff1f1f;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(5,5,5,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+    .brand-heart{
+      width:18px; height:18px; object-fit:contain;
+      filter: drop-shadow(0 0 6px rgba(255,0,0,.7));
+    }
+    .brand span{
+      color: var(--red);
+      text-shadow: 0 0 6px rgba(255,0,0,.35);
+    }
+
+    .nav{
+      display:flex; gap:14px; align-items:center;
+      font-size:13px; color:var(--muted);
+    }
+    .nav a{ padding:8px 10px; border-radius:999px; border:1px solid transparent; }
+    .nav a:hover{ border-color:var(--line); color:var(--text); }
+
+    .wrap{ max-width:1100px; margin:0 auto; padding:18px 16px 70px; }
+
+    .hero{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 60%), var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-inner{
+      padding:18px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .kicker{
+      color:var(--red);
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    h1{
+      margin:8px 0 0;
+      font-size:26px;
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:14px;
+      max-width: 62ch;
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:850;
+      letter-spacing:.2px;
+      font-size:14px;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: var(--red);
+      color:#111;
+      box-shadow: 0 10px 30px rgba(255,31,31,.22);
+    }
+    .btn-primary:hover{ filter: brightness(1.05); }
+    .btn-ghost{
+      background: transparent;
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+    .btn-ghost:hover{ border-color: rgba(255,255,255,.25); }
+
+    .section{ margin-top:22px; }
+    .section-head{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin:0 2px 12px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
+    }
+
+    .flip-wrapper{
+      position:relative;
+      aspect-ratio: 4 / 5;
+      background:#000;
+      overflow:hidden;
+    }
+    .flip-wrapper img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      transition: opacity .28s ease, transform .35s ease;
+      will-change: opacity, transform;
+    }
+    .flip-wrapper img.back{ opacity:0; }
+    .card:hover .flip-wrapper img.front{ opacity:0; }
+    .card:hover .flip-wrapper img.back{ opacity:1; }
+    .card:hover .flip-wrapper img{ transform: scale(1.06); }
+
+    .card.is-flipped .flip-wrapper img.front{ opacity:0; }
+    .card.is-flipped .flip-wrapper img.back{ opacity:1; }
+
+    .card .body{
+      padding:14px 14px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .title-row{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .title{
+      margin:0;
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:15px;
+      line-height:1.2;
+    }
+    .price{
+      color:var(--red);
+      font-weight:950;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .desc{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+      min-height: 34px;
+    }
+    .btn-buy{
+      width:100%;
+      background: rgba(255,31,31,.10);
+      border:1px solid rgba(255,31,31,.35);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:900;
+      cursor:pointer;
+      transition: filter .12s ease, transform .12s ease, border-color .12s ease;
+    }
+    .btn-buy:hover{
+      filter: brightness(1.12);
+      border-color: rgba(255,31,31,.55);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+      h1{ font-size:22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="images/DamagedHeart.jpeg" alt="Damaged Heart" class="brand-heart">
+        <span>Damaged</span>
+      </div>
+
+      <!-- KEEP BEE QUOTE LINK + add back-to-apparel -->
+      <nav class="nav">
+        <a href="#shop">Shop</a>
+        <a href="#bee">Bee Quote</a>
+        <a href="ad.html">Apparel</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">Damaged • Headwear Collection</div>
+          <h1>Flat-Bill • Beanie • Round-Bill</h1>
+          <p class="sub">Tap a product image to flip front/back. Tap Buy Now to go straight to Stripe.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#shop">Shop Headwear</a>
+            <a class="btn btn-ghost" href="#bee">Bee Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="shop">
+      <div class="section-head">
+        <h2>Headwear</h2>
+        <p>Order: Flat-Bill → Beanie → Round-Bill</p>
+      </div>
+
+      <div class="grid">
+        <!-- 1) FLAT-BILL -->
+        <article class="card" data-payment-link="https://buy.stripe.com/aFa7sN62hd7y74576scfK0b">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <img class="front" src="images/capsreddamaged.png" alt="Damaged Flat-Bill Cap - Front">
+            <img class="back"  src="images/NewFlatBillBack.png"  alt="Damaged Flat-Bill Cap - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged Flat-Bill Cap</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Crisp brim. Stitched logo. City-ready.</p>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </article>
+
+        <!-- 2) BEANIE -->
+        <article class="card" data-payment-link="https://buy.stripe.com/dRm6oJ4Yd6Ja8893UgcfK05">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <img class="front" src="images/beanieredstitchdamagedMastercopy.png" alt="Damaged Beanie - Front">
+            <img class="back"  src="images/NewDamagedBeanieBack.jpeg"  alt="Damaged Beanie - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged Beanie</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Warm fit. Cold stare. Red stitch energy.</p>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </article>
+
+        <!-- 3) ROUND-BILL -->
+        <article class="card" data-payment-link="https://buy.stripe.com/9B66oJ4Yd4B2gEF8awcfK06">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <img class="front" src="images/NewRound-BillCap.png" alt="Damaged Round-Bill Cap - Front">
+            <img class="back"  src="images/NewRoundBillCap.png"  alt="Damaged Round-Bill Cap - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged Round-Bill Cap</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Everyday brim. Clean profile. Goes with everything.</p>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BEE QUOTE -->
+    <section class="section" id="bee">
+      <div class="section-head">
+        <h2>The Bee Quote</h2>
+        <p>Brand mindset.</p>
+      </div>
+
+      <div style="border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);">
+        <div style="font-size:18px; line-height:1.35; font-weight:900;">
+          “Bees don’t waste time explaining to flies why honey tastes better than shit.”
+        </div>
+        <div style="margin-top:10px; color:var(--muted); font-size:13px;">
+          — Damaged mindset
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-head">
+        <h2>Contact Us</h2>
+        <p>Questions, wholesale, collabs, support.</p>
+      </div>
+
+      <div style="border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);">
+        <p style="margin:0; color:var(--muted); line-height:1.55; font-size:13px;">
+          Orders + help:
+          <a style="color:var(--text); font-weight:900; text-decoration:underline; text-decoration-color:rgba(255,31,31,.55); text-underline-offset:3px;"
+             href="mailto:2damaged@2sikwittit.com">2damaged@2sikwittit.com</a>
+        </p>
+        <p style="margin:10px 0 0; color:var(--muted); line-height:1.55; font-size:13px;">
+          Brand + collabs:
+          <a style="color:var(--text); font-weight:900; text-decoration:underline; text-decoration-color:rgba(255,31,31,.55); text-underline-offset:3px;"
+             href="mailto:beautifullydamaged@2sikwittit.com">beautifullydamaged@2sikwittit.com</a>
+        </p>
+      </div>
+
+      <footer style="margin-top:18px; color:rgba(255,255,255,.45); font-size:12px; text-align:center;">
+        © <span id="year"></span> Damaged • 2SikWittit Inc.
+      </footer>
+    </section>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Stripe redirect
+    document.addEventListener("click", (e) => {
+      const buyBtn = e.target.closest(".btn-buy");
+      if (buyBtn) {
+        e.preventDefault();
+        const card = buyBtn.closest(".card");
+        const link = (card?.dataset.paymentLink || "").trim();
+
+        if (!link || !link.startsWith("https://buy.stripe.com/")) {
+          alert("Payment link missing or invalid for this item.");
+          return;
+        }
+        buyBtn.textContent = "Redirecting…";
+        window.location.href = link;
+        return;
+      }
+
+      // Mobile flip: tap image to toggle front/back
+      const flip = e.target.closest(".flip-wrapper");
+      if (flip) {
+        const card = flip.closest(".card");
+        if (!card) return;
+        card.classList.toggle("is-flipped");
+      }
+    });
+  </script>
+</body>
+</html>

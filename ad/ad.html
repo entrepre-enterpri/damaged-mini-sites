@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Damaged | Mini Shop</title>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#0e0e0e;
+      --text:#f5f5f5;
+      --muted:#bdbdbd;
+      --red:#ff1f1f;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    /* Sticky Top Bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(5,5,5,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px;
+      gap:14px;
+    }
+    .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand span {
+  color: red;
+}
+
+.brand-heart {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+    .nav{
+      display:flex; gap:14px; align-items:center;
+      font-size:13px; color:var(--muted);
+    }
+    .nav a{ padding:8px 10px; border-radius:999px; border:1px solid transparent; }
+    .nav a:hover{ border-color:var(--line); color:var(--text); }
+
+    /* Layout */
+    .wrap{ max-width:1100px; margin:0 auto; padding:18px 16px 70px; }
+
+    /* HERO VIDEO */
+    .hero{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 60%), var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:0;
+    }
+    .hero-media{
+      position:relative;
+      background:#000;
+      min-height:260px;
+    }
+    .hero-media video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .hero-copy{
+      padding:20px 18px;
+      border-left:1px solid var(--line);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:12px;
+    }
+    .kicker{
+      color:var(--red);
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    h1{
+      margin:0;
+      font-size:26px;
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:14px;
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:850;
+      letter-spacing:.2px;
+      font-size:14px;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: var(--red);
+      color:#111;
+      box-shadow: 0 10px 30px rgba(255,31,31,.22);
+    }
+    .btn-primary:hover{ filter: brightness(1.05); }
+    .btn-ghost{
+      background: transparent;
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+    .btn-ghost:hover{ border-color: rgba(255,255,255,.25); }
+
+    /* Section headings */
+    .section{ margin-top:22px; }
+    .section-head{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin:0 2px 12px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* PRODUCTS */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
+    }
+
+    /* Flip Wrapper */
+    .flip-wrapper{
+      position:relative;
+      aspect-ratio: 4 / 5;
+      background:#000;
+      overflow:hidden;
+    }
+    .flip-wrapper img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      transition: opacity .28s ease, transform .35s ease;
+      will-change: opacity, transform;
+    }
+    .flip-wrapper img.back{ opacity:0; }
+    .card:hover .flip-wrapper img.front{ opacity:0; }
+    .card:hover .flip-wrapper img.back{ opacity:1; }
+    .card:hover .flip-wrapper img{ transform: scale(1.06); }
+
+    /* Mobile: tap-to-toggle */
+    .card.is-flipped .flip-wrapper img.front{ opacity:0; }
+    .card.is-flipped .flip-wrapper img.back{ opacity:1; }
+
+    .card .body{
+      padding:14px 14px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .title-row{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .title{
+      margin:0;
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:15px;
+      line-height:1.2;
+    }
+    .price{
+      color:var(--red);
+      font-weight:950;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .desc{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+      min-height: 34px;
+    }
+    .buy{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn-buy{
+      width:100%;
+      background: rgba(255,31,31,.10);
+      border:1px solid rgba(255,31,31,.35);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:900;
+      cursor:pointer;
+      transition: filter .12s ease, transform .12s ease, border-color .12s ease;
+    }
+    .btn-buy:hover{
+      filter: brightness(1.12);
+      border-color: rgba(255,31,31,.55);
+    }
+    .hint{
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+      margin:0;
+    }
+
+    /* BEE QUOTE */
+    .bee{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    blockquote{
+      margin:0;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 70%), var(--panel);
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+    }
+    blockquote .q{
+      font-size:18px;
+      line-height:1.35;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    blockquote .by{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .bee-img{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#000;
+      box-shadow: var(--shadow);
+      min-height: 240px;
+    }
+    .bee-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* CONTACT */
+    .contact{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .contact h3{
+      margin:0 0 8px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-size:14px;
+    }
+    .contact p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:13px;
+    }
+    .contact .box{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:14px;
+      background: rgba(255,255,255,.03);
+    }
+    .contact a{
+      color: var(--text);
+      font-weight:900;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,31,31,.55);
+      text-underline-offset: 3px;
+    }
+
+    footer{
+      margin-top:18px;
+      color:rgba(255,255,255,.45);
+      font-size:12px;
+      text-align:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-copy{ border-left:none; border-top:1px solid var(--line); }
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+      .bee{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+      h1{ font-size:22px; }
+    }
+   .sound-btn {
+  background: rgba(0,0,0,0.6);   /* subtle dark circle */
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  line-height: 1;
+
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+
+  backdrop-filter: blur(6px);
+}
+
+.sound-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+  <img src="images/DamagedHeart.jpeg" alt="Damaged Heart" class="brand-heart">
+  <span>Damaged</span>
+</div>
+
+      <nav class="nav">
+  <a href="ad2.html">Shop</a>
+  <a href="#bee">Bee Quote</a>
+  <a href="#contact">Contact</a>
+</nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO VIDEO -->
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-media">
+  <video id="adVideo" autoplay muted loop playsinline preload="metadata"
+    poster="images/beanieredstitchdamagedMastercopy.png">
+    <source src="video/ad.mp4" type="video/mp4" />
+  </video>
+
+  <button id="soundBtn" class="sound-btn" type="button" aria-label="Enable sound">▶️</button>
+</div>
+
+
+        <div class="hero-copy">
+          <div class="kicker">2Damaged • 2SikWittit</div>
+          <h1>Wear your strength. Don’t explain it.</h1>
+          <p class="sub">Mental Health Awareness Fast checkout.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="ad2.html">Shop Now</a>
+
+            <a class="btn btn-ghost" href="#bee">Bee Quote</a>
+          </div>
+          <p class="hint">Tip: On mobile, tap the product image to flip front/back.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS (2 or 3) -->
+    <section class="section" id="shop">
+      <div class="section-head">
+        <h2>Products</h2>
+        <p>Tap Buy Now to go straight to Stripe.</p>
+      </div>
+
+      <div class="grid">
+
+        <!-- PRODUCT 1 -->
+        <article class="card" data-payment-link="https://buy.stripe.com/14A14p76l2sU1JL4YkcfK0a">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <!-- Replace these two images with your front/back files -->
+            <img class="front" src="images/NewHoodieFront.png" alt="Damaged Hoodie - Front">
+            <img class="back"  src="images/NewHoodieBack.png"  alt="Damaged Hoodie - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged Hoodie</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Heavy feel. Clean message. Built for everyday armor.</p>
+            <div class="buy">
+              <button class="btn-buy">Buy Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCT 2 -->
+        <article class="card" data-payment-link=" https://buy.stripe.com/9B68wR62hffGewxeyUcfK07">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <img class="front" src="images/NewVneck.png" alt="Damaged V-Neck - Front">
+            <img class="back"  src="images/NewVneckBack.png"  alt="Damaged V-Neck - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged V-Neck</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Soft fit. Sharp statement. Red lettering hits different.</p>
+            <div class="buy">
+              <button class="btn-buy">Buy Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- PRODUCT 3 (OPTIONAL) -->
+        <article class="card" data-payment-link="https://buy.stripe.com/6oUfZjduJebCdst0I4cfK08">
+          <div class="flip-wrapper" role="button" aria-label="Flip product image">
+            <img class="front" src="images/NewMale2Roundneck.png" alt="Damaged Beanie - Front">
+            <img class="back"  src="images/NewMale2Roundneckback.png"  alt="Damaged Beanie - Back">
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <p class="title">Damaged Roundneck</p>
+              <div class="price">$—</div>
+            </div>
+            <p class="desc">Heavy feel. Clean message. Built for everyday armor. A message that runs deeper than style.</p>
+
+            <div class="buy">
+              <button class="btn-buy">Buy Now</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BEE QUOTE + IMAGE -->
+    <section class="section" id="bee">
+      <div class="section-head">
+        <h2>The Bee Quote</h2>
+        <p>Brand mindset.</p>
+      </div>
+
+      <div class="bee">
+        <blockquote>
+          <div class="q">
+            “Bees don’t waste time explaining to flies why honey tastes better than shit.”
+          </div>
+          <div class="by">— Damaged mindset</div>
+        </blockquote>
+
+        <div class="bee-img">
+          <!-- Replace with your bee image path -->
+          <img src="images/bees.png" alt="Bee image">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-head">
+        <h2>Contact Us</h2>
+        <p>Questions, wholesale, collabs, support.</p>
+      </div>
+
+      <div class="contact">
+        <div class="box">
+          <h3>Email</h3>
+          <p>
+            Orders + help:
+            <a href="mailto:sandsoftime@2sikwittit.com">sandsoftime@2sikwittit.com</a>
+          </p>
+          <p style="margin-top:10px;">
+            Brand + collabs:
+            <a href="mailto:shsdamaged@2sikwittit.com">shsdamaged@2sikwittit.com</a>
+          </p>
+        </div>
+
+        <div class="box">
+          <h3>Social</h3>
+          <p>
+  TikTok:
+  <a href="https://www.tiktok.com/@_beautifullydamaged" target="_blank" rel="noopener">
+    @_beautifullydamaged
+  </a>
+</p>
+
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Damaged • 2SikWittit Inc.
+      </footer>
+    </section>
+
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Stripe redirect (Buy Now)
+    document.addEventListener("click", (e) => {
+      const buyBtn = e.target.closest(".btn-buy");
+      if (buyBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === "function") e.stopImmediatePropagation();
+
+        const card = buyBtn.closest(".card");
+        const link = (card?.dataset.paymentLink || "").trim();
+console.log("Stripe link:", link);
+
+        if (!link || !link.startsWith("https://buy.stripe.com/")) {
+          alert("Payment link missing or invalid for this item.");
+          return;
+        }
+
+        buyBtn.textContent = "Redirecting…";
+        window.location.href = link;
+        return;
+      }
+
+      // Mobile flip: tap image to toggle front/back
+      const flip = e.target.closest(".flip-wrapper");
+      if (flip) {
+        const card = flip.closest(".card");
+        if (!card) return;
+
+        // Don't flip if user tapped Buy button area
+        card.classList.toggle("is-flipped");
+      }
+    });
+  </script>
+  <script>
+  const v = document.getElementById("adVideo");
+  const btn = document.getElementById("soundBtn");
+
+  btn.addEventListener("click", async () => {
+    v.muted = false;
+    v.volume = 1;
+
+    try {
+      await v.play();
+      btn.textContent = "🔊 Sound On";
+      btn.disabled = true;
+    } catch (err) {
+      console.log("Playback blocked:", err);
+      btn.textContent = "Tap video";
+    }
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const v = document.getElementById("adVideo");
+  const btn = document.getElementById("soundBtn");
+  if (!v || !btn) return;
+
+  btn.addEventListener("click", async () => {
+    // Unmute + force volume
+    v.muted = false;
+    v.volume = 1;
+
+    try {
+      await v.play();
+      btn.textContent = "🔊";
+    } catch (e) {
+      console.log("play() blocked:", e);
+    }
+
+    // Debug info (check Console)
+    console.log("muted:", v.muted, "volume:", v.volume, "paused:", v.paused);
+  });
+});
+</script>
+
+</body>
+</html>

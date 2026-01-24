@@ -1,0 +1,8 @@
+/* === FONT IMPORTS (TOP OF FILE) === */
+@font-face {
+  font-family: "Blacksword";
+  src: url("../fonts/Blacksword.otf") format("opentype"),
+       url("../fonts/Blacksword.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
