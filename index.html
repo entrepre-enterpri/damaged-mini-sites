@@ -416,8 +416,28 @@
         <div class="hero-media">
   <video id="adVideo" autoplay muted loop playsinline preload="metadata"
     poster="ad/images/beanieredstitchdamagedMastercopy.png">
-    <source src="ad/video/ad.mp4" type="video/mp4" />
+    <source src="ad/video/ad.mp4?v=1" type="video/mp4" />
   </video>
+<button id="playFallback" style="display:none;position:absolute;inset:auto 16px 16px 16px;padding:14px 16px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.55);color:#fff;border-radius:14px;font-weight:600;backdrop-filter: blur(8px);">
+  Tap to play
+</button>
+
+<script>
+  const v = document.querySelector("video");
+  const btn = document.getElementById("playFallback");
+
+  if (v) {
+    const tryPlay = v.play();
+    if (tryPlay && typeof tryPlay.then === "function") {
+      tryPlay.catch(() => {
+        btn.style.display = "block";
+      });
+    }
+    btn?.addEventListener("click", async () => {
+      try { await v.play(); btn.style.display = "none"; } catch(e) {}
+    });
+  }
+</script>
 
   <button id="soundBtn" class="sound-btn" type="button" aria-label="Enable sound">▶️</button>
 </div>
