@@ -396,7 +396,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-  <img src="images/DamagedHeart.jpeg" alt="Damaged Heart" class="brand-heart">
+  <img src="ad/images/DamagedHeart.jpeg" alt="Damaged Heart" class="brand-heart">
   <span>Damaged</span>
 </div>
 
@@ -415,8 +415,8 @@
       <div class="hero-grid">
         <div class="hero-media">
   <video id="adVideo" autoplay muted loop playsinline preload="metadata"
-    poster="images/beanieredstitchdamagedMastercopy.png">
-    <source src="video/ad.mp4" type="video/mp4" />
+    poster="ad/images/beanieredstitchdamagedMastercopy.png">
+    <source src="ad/video/ad.mp4" type="video/mp4" />
   </video>
 
   <button id="soundBtn" class="sound-btn" type="button" aria-label="Enable sound">▶️</button>
@@ -450,8 +450,8 @@
         <article class="card" data-payment-link="https://buy.stripe.com/14A14p76l2sU1JL4YkcfK0a">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
             <!-- Replace these two images with your front/back files -->
-            <img class="front" src="images/NewHoodieFront.png" alt="Damaged Hoodie - Front">
-            <img class="back"  src="images/NewHoodieBack.png"  alt="Damaged Hoodie - Back">
+            <img class="front" src="ad/images/NewHoodieFront.png" alt="Damaged Hoodie - Front">
+            <img class="back"  src="ad/images/NewHoodieBack.png"  alt="Damaged Hoodie - Back">
           </div>
           <div class="body">
             <div class="title-row">
@@ -466,10 +466,10 @@
         </article>
 
         <!-- PRODUCT 2 -->
-        <article class="card" data-payment-link=" https://buy.stripe.com/9B68wR62hffGewxeyUcfK07">
+        <article class="card" data-payment-link="https://buy.stripe.com/9B68wR62hffGewxeyUcfK07">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
-            <img class="front" src="images/NewVneck.png" alt="Damaged V-Neck - Front">
-            <img class="back"  src="images/NewVneckBack.png"  alt="Damaged V-Neck - Back">
+            <img class="front" src="ad/images/NewVneck.png" alt="Damaged V-Neck - Front">
+            <img class="back"  src="ad/images/NewVneckBack.png"  alt="Damaged V-Neck - Back">
           </div>
           <div class="body">
             <div class="title-row">
@@ -486,8 +486,8 @@
         <!-- PRODUCT 3 (OPTIONAL) -->
         <article class="card" data-payment-link="https://buy.stripe.com/6oUfZjduJebCdst0I4cfK08">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
-            <img class="front" src="images/NewMale2Roundneck.png" alt="Damaged Beanie - Front">
-            <img class="back"  src="images/NewMale2Roundneckback.png"  alt="Damaged Beanie - Back">
+            <img class="front" src="ad/images/NewMale2Roundneck.png" alt="Damaged Beanie - Front">
+            <img class="back"  src="ad/images/NewMale2Roundneckback.png"  alt="Damaged Beanie - Back">
           </div>
           <div class="body">
             <div class="title-row">
@@ -522,7 +522,7 @@
 
         <div class="bee-img">
           <!-- Replace with your bee image path -->
-          <img src="images/bees.png" alt="Bee image">
+          <img src="ad/images/bees.png" alt="Bee image">
         </div>
       </div>
     </section>
@@ -603,24 +603,7 @@ console.log("Stripe link:", link);
       }
     });
   </script>
-  <script>
-  const v = document.getElementById("adVideo");
-  const btn = document.getElementById("soundBtn");
-
-  btn.addEventListener("click", async () => {
-    v.muted = false;
-    v.volume = 1;
-
-    try {
-      await v.play();
-      btn.textContent = "🔊 Sound On";
-      btn.disabled = true;
-    } catch (err) {
-      console.log("Playback blocked:", err);
-      btn.textContent = "Tap video";
-    }
-  });
-</script>
+  
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const v = document.getElementById("adVideo");
