@@ -177,7 +177,35 @@
       flex-direction:column;
       min-height: 100%;
     }
-
+.valuebar{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:14px;
+}
+.value{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  border-radius: var(--radius);
+  padding:14px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.25);
+}
+.value-title{
+  color: var(--red);
+  font-weight:950;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:8px;
+}
+.value-text{
+  color: var(--text);
+  font-weight:750;
+  line-height:1.35;
+  font-size:13px;
+}
+@media (max-width: 900px){
+  .valuebar{ grid-template-columns: 1fr; }
+}
     /* Flip Wrapper */
     .flip-wrapper{
       position:relative;
@@ -260,6 +288,13 @@
       color:rgba(255,255,255,.55);
       margin:0;
     }
+    /* 🔥 Micro social proof */
+.micro-proof{
+  margin-top:10px;
+  font-size:12px;
+  color:rgba(255,255,255,.75);
+  line-height:1.5;
+}
 .story{
   border:1px solid var(--line);
   background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 70%), var(--panel);
@@ -443,17 +478,24 @@
 
         <div class="kicker">Beautifully Damaged • 2SikWittit</div>
 
-<h1>Streetwear for survivors, fighters, and the ones who kept going.</h1>
+<h1>
+Streetwear for the ones who’ve been through it — and kept going.
+</h1>
 
 <p class="sub">
-  Beautifully Damaged is more than clothing — it’s armor with a message.
-  Built to honor healing, mental health, and the strength nobody sees.
+Beautifully Damaged creates apparel that speaks for survivors,
+fighters, and anyone carrying strength the world can’t see.
 </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="ad2.html">Shop Now</a>
+          <<div class="cta-row">
+  <a class="btn btn-primary" href="ad2.html">Shop Now</a>
+  <a class="btn btn-ghost" href="#bee">Bee Quote</a>
+</div>
 
-            <a class="btn btn-ghost" href="#bee">Bee Quote</a>
-          </div>
+<div class="micro-proof">
+  ⭐ Worn by survivors, fighters, and everyday warriors<br>
+  🔥 Growing Beautifully Damaged community<br>
+  ❤️ Built from a real healing journey
+</div>
           <p class="hint">Tip: On mobile, tap the product image to flip front/back.</p>
         </div>
       </div>
@@ -474,7 +516,33 @@
     </div>
   </div>
 </section>
+<!-- VALUE CLARITY (ADD THIS HERE) -->
+ <section class="section" id="why">
+  <div class="valuebar">
 
+    <div class="value">
+      <div class="value-title">What it is</div>
+      <div class="value-text">
+        Empowerment streetwear with real meaning.
+      </div>
+    </div>
+
+    <div class="value">
+      <div class="value-title">Who it’s for</div>
+      <div class="value-text">
+        Survivors, fighters, and anyone rebuilding their strength.
+      </div>
+    </div>
+
+    <div class="value">
+      <div class="value-title">Why it matters</div>
+      <div class="value-text">
+        Because your story deserves to be worn — not hidden.
+      </div>
+    </div>
+
+  </div>
+</section>
     <!-- PRODUCTS (2 or 3) -->
     <section class="section" id="shop">
       <div class="section-head">
@@ -494,7 +562,7 @@
           <div class="body">
             <div class="title-row">
               <p class="title">Damaged Hoodie</p>
-              <div class="price">$—</div>
+              <div class="price">$65—</div>
             </div>
             <p class="desc">Heavy feel. Clean message. Built for everyday armor.</p>
             <div class="buy">
@@ -512,7 +580,7 @@
           <div class="body">
             <div class="title-row">
               <p class="title">Damaged V-Neck</p>
-              <div class="price">$—</div>
+              <div class="price">$45—</div>
             </div>
             <p class="desc">Soft fit. Sharp statement. Red lettering hits different.</p>
             <div class="buy">
@@ -530,7 +598,7 @@
           <div class="body">
             <div class="title-row">
               <p class="title">Damaged Roundneck</p>
-              <div class="price">$—</div>
+              <div class="price">$40—</div>
             </div>
             <p class="desc">Heavy feel. Clean message. Built for everyday armor. A message that runs deeper than style.</p>
 
@@ -542,7 +610,25 @@
 
       </div>
     </section>
+<section class="section" id="story">
+  <div class="section-head">
+    <h2>Our Story</h2>
+    <p>Real healing. Real reason.</p>
+  </div>
 
+  <div class="story">
+    <p class="story-lead">
+      Beautifully Damaged was created for the ones who’ve been through it —
+      and still show up strong.
+    </p>
+
+    <p class="story-sub">
+      This brand stands for healing, mental health awareness, and the quiet
+      strength people carry every day. You don’t have to explain your scars.
+      You just wear your strength.
+    </p>
+  </div>
+</section>
     <!-- BEE QUOTE + IMAGE -->
     <section class="section" id="bee">
       <div class="section-head">
