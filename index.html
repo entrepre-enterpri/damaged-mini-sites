@@ -446,7 +446,104 @@
 .sound-btn:hover {
   background: rgba(0,0,0,0.8);
 }
+/* FEATURED SANDS OF TIME */
+.featured{
+  margin-top:22px;
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 70%), var(--panel);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
 
+.featured-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:0;
+}
+
+.featured-media{
+  border-right:1px solid var(--line);
+  background:#000;
+}
+
+.featured-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.featured-copy{
+  padding:22px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+}
+
+.featured-kicker{
+  color:var(--red);
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:12px;
+}
+
+.featured-title{
+  margin:0;
+  font-size:28px;
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.featured-sub{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+.featured-verse{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  border-radius: 14px;
+  overflow:hidden;
+}
+
+.featured-verse img{
+  width:100%;
+  display:block;
+}
+
+.featured-price{
+  color:var(--red);
+  font-weight:950;
+  font-size:18px;
+  margin-top:2px;
+}
+
+.featured-note{
+  font-size:12px;
+  color:rgba(255,255,255,.65);
+  line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .featured-grid{
+    grid-template-columns:1fr;
+  }
+
+  .featured-media{
+    border-right:none;
+    border-bottom:1px solid var(--line);
+  }
+
+  .featured-title{
+    font-size:24px;
+  }
+}
 
   </style>
 </head>
@@ -460,6 +557,7 @@
 </div>
 
       <nav class="nav">
+        <a href="#sands">Sands of Time</a>
   <a href="#shop">Shop</a>
   <a href="#story">Our Story</a>
   <a href="ad2.html">Headwear</a>
@@ -536,6 +634,45 @@
       <div class="value-title">Why it matters</div>
       <div class="value-text">
         Because your story deserves to be worn — not hidden.
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- FEATURED SANDS OF TIME -->
+<section class="featured" id="sands">
+  <div class="featured-grid">
+
+    <div class="featured-media">
+      <img src="ad/images/NewGiftSet.png" alt="Sands of Time collection">
+    </div>
+
+    <div class="featured-copy">
+      <div class="featured-kicker">Featured support piece</div>
+
+      <h2 class="featured-title">Sands of Time</h2>
+
+      <p class="featured-sub">
+        A small piece with real meaning. Built from memory, emotion, and survival.
+        This is more than an item — it is a quiet statement for the ones who carry
+        unspoken strength.
+      </p>
+
+      <div class="featured-price">$18</div>
+
+      <div class="featured-verse">
+        <img src="ad/images/UnspokenVerse.png" alt="Unspoken Verse for Sands of Time">
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://buy.stripe.com/4gMdRb2Q54B2cop62ocfK0k" target="_blank" rel="noopener">
+          Buy Sands of Time
+        </a>
+        <a class="btn btn-ghost" href="#shop">Shop Apparel</a>
+      </div>
+
+      <div class="featured-note">
+        Handmade meaning. Limited feel. A lower-entry way to support the message.
       </div>
     </div>
 
