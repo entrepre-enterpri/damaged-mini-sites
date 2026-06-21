@@ -161,6 +161,72 @@
       font-size:13px;
     }
 
+    .campaign-feature {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,31,31,.08), transparent 70%), var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.campaign-feature-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.campaign-feature-media {
+  background: #000;
+  border-right: 1px solid var(--line);
+}
+
+.campaign-feature-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: contain;
+  object-position: center;
+  background: #000;
+}
+
+.campaign-feature-copy {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.campaign-feature-copy h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.campaign-feature-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .campaign-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campaign-feature-media {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .campaign-feature-media img {
+    min-height: auto;
+  }
+}
+
     /* PRODUCTS */
     .grid{
       display:grid;
@@ -442,10 +508,142 @@
 
   backdrop-filter: blur(6px);
 }
+#pauseBtn {
+  right: 68px;
+}
 
 .sound-btn:hover {
   background: rgba(0,0,0,0.8);
 }
+
+/* BEAUTIFULLY DAMAGED APPAREL PROMO DROP */
+.apparel-promo{
+  margin-top:22px;
+  border:1px solid rgba(255,31,31,.28);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,31,31,.20), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
+    var(--panel);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+
+.apparel-promo-grid{
+  display:grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap:0;
+}
+
+.apparel-promo-copy{
+  padding:22px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+  border-right:1px solid var(--line);
+}
+
+.drop-eyebrow{
+  color:var(--red);
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.drop-title{
+  margin:0;
+  font-size:30px;
+  line-height:1.08;
+  font-weight:950;
+  letter-spacing:.2px;
+}
+
+.drop-sub{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+.drop-points{
+  display:grid;
+  gap:8px;
+  margin:4px 0 0;
+}
+
+.drop-point{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  border-radius:14px;
+  padding:10px 12px;
+  color:rgba(255,255,255,.88);
+  font-size:13px;
+  line-height:1.35;
+}
+
+.promo-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+
+.promo-stack{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:10px;
+  padding:14px;
+  background:#000;
+}
+
+.promo-card{
+  position:relative;
+  min-height:245px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  background:#050505;
+}
+
+.promo-card img{
+  width:100%;
+  height:100%;
+  min-height:245px;
+  object-fit:cover;
+  transform:scale(1.02);
+}
+
+.promo-label{
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  border-radius:999px;
+  padding:9px 10px;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  text-align:center;
+}
+
+.drop-note{
+  color:rgba(255,255,255,.62);
+  font-size:12px;
+  line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .apparel-promo-grid{ grid-template-columns:1fr; }
+  .apparel-promo-copy{ border-right:none; border-bottom:1px solid var(--line); }
+  .promo-stack{ grid-template-columns:1fr; }
+  .promo-card,.promo-card img{ min-height:320px; }
+}
+
 /* FEATURED SANDS OF TIME */
 .featured{
   margin-top:22px;
@@ -557,11 +755,13 @@
 </div>
 
       <nav class="nav">
-        <a href="#sands">Sands of Time</a>
-  <a href="#shop">Shop</a>
+  <a href="#promo-drop">Apparel Drop</a>
+  <a href="#shop">Beautifully Damaged</a>
+  <a href="#campaign-sound">Music</a>
+  <a href="#damaged-apparel">Damaged</a>
+  <a href="#sands">Sands of Time</a>
   <a href="#story">Our Story</a>
   <a href="ad2.html">Headwear</a>
-  <a href="#bee">Bee Quote</a>
   <a href="#contact">Contact</a>
 </nav>
     </div>
@@ -574,13 +774,14 @@
   <div class="hero-grid">
  <!-- LEFT SIDE: VIDEO -->
     <div class="hero-media">
-      <video id="adVideo" autoplay muted loop playsinline preload="metadata"
-        poster="ad/images/beanieredstitchdamagedMastercopy.png">
-        <source src="ad/video/ad.mp4" type="video/mp4" />
-      </video>
+  <video id="adVideo" autoplay muted loop playsinline preload="metadata"
+    poster="ad/images/Beautifully.png">
+    <source src="ad/video/ad.mp4" type="video/mp4" />
+  </video>
 
-      <button id="soundBtn" class="sound-btn" type="button" aria-label="Enable sound">▶️</button>
-    </div>
+  <button id="soundBtn" class="sound-btn" type="button" aria-label="Enable sound">▶️</button>
+  <button id="pauseBtn" class="sound-btn" type="button" aria-label="Pause video">⏸</button>
+</div>
      <!-- ✅ RIGHT SIDE: ALL TEXT MUST BE INSIDE THIS -->
 <div class="hero-copy">
     
@@ -596,8 +797,8 @@
       </p>
 
       <div class="cta-row">
-        <a class="btn btn-primary" href="ad2.html">Shop Now</a>
-        <a class="btn btn-ghost" href="#bee">Bee Quote</a>
+        <a class="btn btn-primary" href="#promo-drop">Shop Apparel</a>
+        <a class="btn btn-ghost" href="ad2.html">Headwear</a>
       </div>
 
       <div class="micro-proof">
@@ -639,6 +840,238 @@
 
   </div>
 </section>
+<!-- BEAUTIFULLY DAMAGED CAMPAIGN FEATURE -->
+<section class="campaign-feature" id="promo-drop">
+  <div class="campaign-feature-grid">
+
+    <div class="campaign-feature-media">
+      <img src="ad/images/Beautifully.png" alt="Model wearing Beautifully Damaged V-neck campaign apparel">
+    </div>
+
+    <div class="campaign-feature-copy">
+      <div class="kicker">Beautifully Damaged • Promotional Drop</div>
+
+      <h2>Wear the story. Own the strength.</h2>
+
+      <p>
+        Beautifully Damaged is survivor streetwear created for the ones who have
+        been through it, carried it, and still choose to stand with power.
+      </p>
+
+      <p>
+        This drop introduces the Beautifully Damaged hoodie, V-neck, and roundneck —
+        each piece carrying the message of healing, resilience, and truth.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#shop">Shop Beautifully Damaged</a>
+        <a class="btn btn-ghost" href="#campaign-sound">Feel the Campaign</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BEAUTIFULLY DAMAGED APPAREL -->
+<section class="section" id="shop">
+  <div class="section-head">
+    <h2>Beautifully Damaged Apparel</h2>
+    <p>Promotional apparel drop — hoodie, V-neck, and roundneck.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- BEAUTIFULLY DAMAGED HOODIE -->
+    <article class="card" data-payment-link="https://buy.stripe.com/eVq8wRbmB1oQ601duQcfK0l">
+      <div class="flip-wrapper" role="button" aria-label="Flip Beautifully Damaged Hoodie image">
+        <img class="front" src="ad/images/BeautifullyDamagedHoodies.png" alt="Beautifully Damaged Hoodie">
+        <img class="back" src="ad/images/BeautifullyDamagedstock.png" alt="Beautifully Damaged Hoodie inventory">
+      </div>
+
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Beautifully Damaged Hoodie</p>
+          <div class="price">$65</div>
+        </div>
+
+        <p class="desc">
+          Bold black hoodie with red Beautifully Damaged script. Built for survivors,
+          fighters, and everyday warriors who wear their strength.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- BEAUTIFULLY DAMAGED V-NECK -->
+    <article class="card" data-payment-link="https://buy.stripe.com/3cI28taix5F61JL4YkcfK0m">
+      <div class="flip-wrapper" role="button" aria-label="Flip Beautifully Damaged V-Neck image">
+        <img class="front" src="ad/images/BeautifullyDamagedV-neck.png" alt="Beautifully Damaged V-Neck">
+        <img class="back" src="ad/images/BeautifullyDamagedvneckad.png" alt="Beautifully Damaged V-Neck display">
+      </div>
+
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Beautifully Damaged V-Neck</p>
+          <div class="price">$45</div>
+        </div>
+
+        <p class="desc">
+          Clean black V-neck with red script. Soft, sharp, and made for the ones who
+          have been through it and still stand beautifully strong.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- BEAUTIFULLY DAMAGED ROUNDNECK -->
+    <article class="card" data-payment-link="https://buy.stripe.com/00w4gB4Yd9Vm3RT8awcfK0n">
+      <div class="flip-wrapper" role="button" aria-label="Flip Beautifully Damaged Roundneck image">
+        <img class="front" src="ad/images/BeautifullyDamagedRoundnecks.png" alt="Beautifully Damaged Roundneck">
+        <img class="back" src="ad/images/BeautifullyDamagedmailroom.png" alt="Beautifully Damaged mailroom inventory">
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Beautifully Damaged Roundneck</p>
+          <div class="price">$40</div>
+        </div>
+
+        <p class="desc">
+          Classic black roundneck with a powerful Beautifully Damaged front statement.
+          Simple, strong, and made to help you own your story.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- BEAUTIFULLY DAMAGED MUSIC / CAMPAIGN VIDEO -->
+<section class="section" id="campaign-sound">
+  <div class="section-head">
+    <h2>The Sound of Beautifully Damaged</h2>
+    <p>Music, visuals, and message behind the apparel.</p>
+  </div>
+
+  <div class="story">
+    <p class="story-lead">
+      Beautifully Damaged is more than clothing — it has a sound, a feeling,
+      and a story behind every piece.
+    </p>
+
+    <p class="story-sub">
+      Watch the campaign visuals and hear the music created to carry the message
+      of survival, healing, strength, and becoming whole again.
+    </p>
+
+    <div class="cta-row" style="margin-top:14px;">
+      <a class="btn btn-primary"
+         href="https://youtu.be/hSteLV8OmUk"
+         target="_blank"
+         rel="noopener">
+        Watch Official Video
+      </a>
+
+      <a class="btn btn-ghost"
+         href="https://youtube.com/shorts/x9iWWk9F8uY"
+         target="_blank"
+         rel="noopener">
+        Watch YouTube Short
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DAMAGED APPAREL -->
+<section class="section" id="damaged-apparel">
+  <div class="section-head">
+    <h2>Damaged Apparel</h2>
+    <p>The original Damaged collection — front statement, back truth.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- DAMAGED HOODIE -->
+    <article class="card" data-payment-link="https://buy.stripe.com/14A14p76l2sU1JL4YkcfK0a">
+      <div class="flip-wrapper" role="button" aria-label="Flip Damaged Hoodie image">
+        <img class="front" src="ad/images/NewHoodieFront.png" alt="Damaged Hoodie - Front">
+        <img class="back" src="ad/images/NewHoodieBack.png" alt="Damaged Hoodie - Back">
+      </div>
+
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Damaged Hoodie</p>
+          <div class="price">$65</div>
+        </div>
+
+        <p class="desc">
+          Heavy feel. Clean message. Built for everyday armor and quiet strength.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAMAGED V-NECK -->
+    <article class="card" data-payment-link="https://buy.stripe.com/9B68wR62hffGewxeyUcfK07">
+      <div class="flip-wrapper" role="button" aria-label="Flip Damaged V-Neck image">
+        <img class="front" src="ad/images/NewVneck.png" alt="Damaged V-Neck - Front">
+        <img class="back" src="ad/images/NewVneckBack.png" alt="Damaged V-Neck - Back">
+      </div>
+
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Damaged V-Neck</p>
+          <div class="price">$45</div>
+        </div>
+
+        <p class="desc">
+          Soft fit. Sharp statement. Red lettering that carries the message with power.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAMAGED ROUNDNECK -->
+    <article class="card" data-payment-link="https://buy.stripe.com/6oUfZjduJebCdst0I4cfK08">
+      <div class="flip-wrapper" role="button" aria-label="Flip Damaged Roundneck image">
+        <img class="front" src="ad/images/NewMale2Roundneck.png" alt="Damaged Roundneck - Front">
+        <img class="back" src="ad/images/NewMale2Roundneckback.png" alt="Damaged Roundneck - Back">
+      </div>
+
+      <div class="body">
+        <div class="title-row">
+          <p class="title">Damaged Roundneck</p>
+          <div class="price">$40</div>
+        </div>
+
+        <p class="desc">
+          Clean everyday roundneck with a message that runs deeper than style.
+        </p>
+
+        <div class="buy">
+          <button class="btn-buy">Own It</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
 <!-- FEATURED SANDS OF TIME -->
 <section class="featured" id="sands">
   <div class="featured-grid">
@@ -681,25 +1114,25 @@
     <!-- PRODUCTS (2 or 3) -->
     <section class="section" id="shop">
       <div class="section-head">
-        <h2>Products</h2>
-        <p>Tap Buy Now to go straight to Stripe.</p>
+        <h2>Beautifully Damaged Apparel</h2>
+        <p>Choose a piece. Tap Buy Now to go straight to Stripe.</p>
       </div>
 
       <div class="grid">
 
         <!-- PRODUCT 1 -->
-        <article class="card" data-payment-link="https://buy.stripe.com/14A14p76l2sU1JL4YkcfK0a">
+        <article class="card" data-payment-link="https://buy.stripe.com/eVq8wRbmB1oQ601duQcfK0l">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
             <!-- Replace these two images with your front/back files -->
-            <img class="front" src="ad/images/NewHoodieFront.png" alt="Damaged Hoodie - Front">
-            <img class="back"  src="ad/images/NewHoodieBack.png"  alt="Damaged Hoodie - Back">
+            <img class="front" src="ad/images/BeautifullyDamagedHoodies.png" alt="Beautifully Damaged Hoodie promotional image">
+            <img class="back"  src="ad/images/BeautifullyDamagedstock.png"  alt="Beautifully Damaged stock display image">
           </div>
           <div class="body">
             <div class="title-row">
-              <p class="title">Damaged Hoodie</p>
+              <p class="title">Beautifully Damaged Hoodie</p>
               <div class="price">$65</div>
             </div>
-            <p class="desc">Heavy feel. Clean message. Built for everyday armor.</p>
+            <p class="desc">Heavy feel. Clean message. Built for everyday armor — the lead piece of the drop.</p>
             <div class="buy">
               <button class="btn-buy">Buy Now</button>
             </div>
@@ -707,17 +1140,17 @@
         </article>
 
         <!-- PRODUCT 2 -->
-        <article class="card" data-payment-link="https://buy.stripe.com/9B68wR62hffGewxeyUcfK07">
+        <article class="card" data-payment-link="https://buy.stripe.com/3cI28taix5F61JL4YkcfK0m">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
-            <img class="front" src="ad/images/NewVneck.png" alt="Damaged V-Neck - Front">
-            <img class="back"  src="ad/images/NewVneckBack.png"  alt="Damaged V-Neck - Back">
+            <img class="front" src="ad/images/BeautifullyDamagedV-neck.png" alt="Beautifully Damaged V-neck product image">
+            <img class="back"  src="ad/images/Beautifully.png"  alt="Model wearing the Beautifully Damaged V-neck">
           </div>
           <div class="body">
             <div class="title-row">
-              <p class="title">Damaged V-Neck</p>
+              <p class="title">Beautifully Damaged V-Neck</p>
               <div class="price">$45</div>
             </div>
-            <p class="desc">Soft fit. Sharp statement. Red lettering hits different.</p>
+            <p class="desc">Soft fit. Sharp statement. Front message, back truth, built for survivor energy.</p>
             <div class="buy">
               <button class="btn-buy">Buy Now</button>
             </div>
@@ -725,17 +1158,17 @@
         </article>
 
         <!-- PRODUCT 3 (OPTIONAL) -->
-        <article class="card" data-payment-link="https://buy.stripe.com/6oUfZjduJebCdst0I4cfK08">
+        <article class="card" data-payment-link="https://buy.stripe.com/00w4gB4Yd9Vm3RT8awcfK0n">
           <div class="flip-wrapper" role="button" aria-label="Flip product image">
-            <img class="front" src="ad/images/NewMale2Roundneck.png" alt="Damaged Beanie - Front">
-            <img class="back"  src="ad/images/NewMale2Roundneckback.png"  alt="Damaged Beanie - Back">
+            <img class="front" src="ad/images/BeautifullyDamagedRoundnecks.png" alt="Beautifully Damaged Roundneck promotional image">
+            <img class="back"  src="ad/images/BeautifullyDamagedmailroom.png"  alt="Beautifully Damaged mailroom inventory image">
           </div>
           <div class="body">
             <div class="title-row">
-              <p class="title">Damaged Roundneck</p>
+              <p class="title">Beautifully Damaged Roundneck</p>
               <div class="price">$40</div>
             </div>
-            <p class="desc">Heavy feel. Clean message. Built for everyday armor. A message that runs deeper than style.</p>
+            <p class="desc">Clean roundneck fit. A message that runs deeper than style — backed by real drop inventory.</p>
 
             <div class="buy">
               <button class="btn-buy">Buy Now</button>
@@ -791,7 +1224,7 @@
           <div class="q">
             “Bees don’t waste time proving their worth. They just make honey.”
           </div>
-          <div class="by">— Damaged mindset</div>
+          <div class="by">—Elegantly Damaged</div>
         </blockquote>
 
         <div class="bee-img">
@@ -854,9 +1287,7 @@
 
         const card = buyBtn.closest(".card");
         const link = (card?.dataset.paymentLink || "").trim();
-console.log("Stripe link:", link);
-
-        if (!link || !link.startsWith("https://buy.stripe.com/")) {
+if (!link || !link.startsWith("https://buy.stripe.com/")) {
           alert("Payment link missing or invalid for this item.");
           return;
         }
@@ -881,26 +1312,40 @@ console.log("Stripe link:", link);
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const v = document.getElementById("adVideo");
-  const btn = document.getElementById("soundBtn");
-  if (!v || !btn) return;
+  const soundBtn = document.getElementById("soundBtn");
+  const pauseBtn = document.getElementById("pauseBtn");
 
-  btn.addEventListener("click", async () => {
-    // Unmute + force volume
+  if (!v || !soundBtn || !pauseBtn) return;
+
+  soundBtn.addEventListener("click", async () => {
     v.muted = false;
     v.volume = 1;
 
     try {
       await v.play();
-      btn.textContent = "🔊";
+      soundBtn.textContent = "🔊";
+      pauseBtn.textContent = "⏸";
     } catch (e) {
       console.log("play() blocked:", e);
     }
+  });
 
-    // Debug info (check Console)
-    console.log("muted:", v.muted, "volume:", v.volume, "paused:", v.paused);
+  pauseBtn.addEventListener("click", async () => {
+    if (v.paused) {
+      try {
+        await v.play();
+        pauseBtn.textContent = "⏸";
+      } catch (e) {
+        console.log("play() blocked:", e);
+      }
+    } else {
+      v.pause();
+      pauseBtn.textContent = "▶️";
+    }
   });
 });
 </script>
 
 </body>
 </html>
+
