@@ -131,29 +131,174 @@
     }
     .btn:active{ transform: translateY(1px); }
     .btn-primary{
-      background: var(--red);
-      color:#111;
-      box-shadow: 0 10px 30px rgba(255,31,31,.22);
-    }
-    .btn-primary:hover{ filter: brightness(1.05); }
+  position: relative;
+  overflow: hidden;
+  background: var(--red);
+  color:#111;
+  box-shadow: 0 0 18px rgba(255,31,31,.28);
+  animation: redPulse 2.4s ease-in-out infinite;
+}
+
+.btn-primary:hover{
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 16px rgba(255,31,31,.65),
+    0 0 34px rgba(255,31,31,.35),
+    0 12px 34px rgba(255,31,31,.22);
+  filter: brightness(1.05);
+}
+
+/* Shine sweep on red button hover */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left .6s ease;
+}
+
+.btn-primary:hover::after {
+  left: 140%;
+}
+
+/* Soft red attention pulse */
+@keyframes redPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(255,31,31,.24);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(255,31,31,.48);
+  }
+}
     .btn-ghost{
       background: transparent;
       border:1px solid var(--line);
       color:var(--text);
     }
+
     .btn-ghost:hover{ border-color: rgba(255,255,255,.25); }
 /* YouTube Shorts green button */
 .btn-short {
+  position: relative;
+  overflow: hidden;
   background: #39FF14;
   color: #050505;
   border: 1px solid #39FF14;
-  box-shadow: 0 10px 30px rgba(57,255,20,.22);
+  box-shadow: 0 0 18px rgba(57,255,20,.28);
+  animation: shortPulse 2.4s ease-in-out infinite;
 }
 
 .btn-short:hover {
-  filter: brightness(1.08);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 16px rgba(57,255,20,.65),
+    0 0 34px rgba(57,255,20,.35),
+    0 12px 34px rgba(57,255,20,.22);
+  filter: brightness(1.05);
   border-color: #39FF14;
 }
+
+/* Shine sweep on hover */
+.btn-short::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.65),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left .6s ease;
+}
+
+.btn-short:hover::after {
+  left: 140%;
+}
+
+/* Soft attention pulse */
+@keyframes shortPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(57,255,20,.24);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(57,255,20,.48);
+  }
+}
+/* Soft attention pulse */
+@keyframes shortPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(57,255,20,.24);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(57,255,20,.48);
+  }
+}
+
+/* Green glow campaign button */
+.btn-green-glow {
+  position: relative;
+  overflow: hidden;
+  background: #39FF14;
+  color: #050505;
+  border: 1px solid #39FF14;
+  box-shadow: 0 0 18px rgba(57,255,20,.28);
+  animation: greenPulse 2.4s ease-in-out infinite;
+}
+
+.btn-green-glow:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 16px rgba(57,255,20,.65),
+    0 0 34px rgba(57,255,20,.35),
+    0 12px 34px rgba(57,255,20,.22);
+  filter: brightness(1.06);
+}
+
+.btn-green-glow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.65),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left .6s ease;
+}
+
+.btn-green-glow:hover::after {
+  left: 140%;
+}
+
+@keyframes greenPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(57,255,20,.24);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(57,255,20,.48);
+  }
+}
+
+/* Section headings */
 
     /* Section headings */
     .section{ margin-top:22px; }
@@ -201,6 +346,12 @@
   object-fit: contain;
   object-position: center;
   background: #000;
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.campaign-feature-media:hover img {
+  transform: scale(1.025);
+  filter: brightness(1.08);
 }
 
 .campaign-feature-copy {
@@ -356,9 +507,16 @@
       transition: filter .12s ease, transform .12s ease, border-color .12s ease;
     }
     .btn-buy:hover{
-      filter: brightness(1.12);
-      border-color: rgba(255,31,31,.55);
-    }
+  background: #39FF14;
+  color: #050505;
+  border-color: #39FF14;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 16px rgba(57,255,20,.65),
+    0 0 34px rgba(57,255,20,.35),
+    0 12px 34px rgba(57,255,20,.22);
+  filter: brightness(1.05);
+}
     .hint{
       font-size:12px;
       color:rgba(255,255,255,.55);
@@ -921,7 +1079,7 @@
     <article class="card" data-payment-link="https://buy.stripe.com/3cI28taix5F61JL4YkcfK0m">
       <div class="flip-wrapper" role="button" aria-label="Flip Beautifully Damaged V-Neck image">
         <img class="front" src="ad/images/BeautifullyDamagedV-neck.png" alt="Beautifully Damaged V-Neck">
-        <img class="back" src="ad/images/BeautifullyDamagedvneckad.png" alt="Beautifully Damaged V-Neck display">
+        <img class="back" src="ad/images/BeatifullyDamagedvneckAd.png" alt="Beautifully Damaged V-Neck display">
       </div>
 
       <div class="body">
@@ -993,7 +1151,7 @@
         Feel the Campaign
       </a>
 
-      <a class="btn btn-ghost"
+      <a class="btn btn-short"
          href="https://youtube.com/shorts/x9iWWk9F8uY"
          target="_blank"
          rel="noopener">
@@ -1113,7 +1271,7 @@
         <a class="btn btn-primary" href="https://buy.stripe.com/4gMdRb2Q54B2cop62ocfK0k" target="_blank" rel="noopener">
           Buy Sands of Time
         </a>
-        <a class="btn btn-ghost" href="#shop">Shop Apparel</a>
+        <a class="btn btn-green-glow" href="#shop">Shop Apparel</a>
       </div>
 
       <div class="featured-note">
